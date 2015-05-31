@@ -1,4 +1,5 @@
 gruntfile.js
+/examples
 .npmignore
 .gitignore
 .git
