@@ -1,8 +1,8 @@
 {
-	"name": "SqlitePromised",
+	"name": "sqlite-promised",
 	"version": "1.0.0",
 	"description": "A promise wrapper of sqlite3 written in typescript",
-	"main": "SqlitePromised.js",
+	"main": "sqlite-promised.js",
 	"dependencies": {
 		"sqlite3": "^3.0.8"
 	},
