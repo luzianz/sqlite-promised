@@ -4,6 +4,7 @@
 //TODO: comment code
 
 import sqlite3 = require('sqlite3');
+var Promise = require('promiz');
 
 export interface IStatementComposite<T> {
 	statement: sqlite3.Statement;
@@ -13,18 +14,6 @@ export interface IStatementComposite<T> {
 export interface FPromiseGenerator {
 	//TODO: figure out if 'deferral' is the correct term here
 	(deferral: (resolve, reject) => void): any;
-}
-
-var _promiseGenerator: FPromiseGenerator;
-
-/**
- * promiseGenerator: a function with a defferal as its argument, and returns a promise
- * defferal: a function with 2 arguments: resolve and reject
- * resolve: a function called passing in the result of a successful async callback
- * reject: a function called passing in the error of a failed async callback
- */
-export function setPromiseGenerator(promiseGenerator: FPromiseGenerator) {
-	_promiseGenerator = promiseGenerator;
 }
 
 export function openDatabase(filePath: string): IPromise<sqlite3.Database> {
@@ -130,15 +119,6 @@ export function queryAndClose<T>(db: sqlite3.Database, sql: string, params?): IP
 
 // ----------------------------------------------------------------------------
 
-/**
- * This function simply wraps the _promiseGenerator variable, but throws
- * an error if it wasn't set.
- */
 function createPromise(deferral: (resolve, reject) => void) {
-	if (typeof _promiseGenerator == 'undefined') {
-		//TODO: figure out a better error message
-		throw new Error('you must first call setPromiseGenerator');
-	}
-
-	return _promiseGenerator(deferral);
+	return new Promise(deferral);
 }
