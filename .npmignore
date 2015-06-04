@@ -1,7 +1,9 @@
+/examples/
+typings/
+.git/
+.settings/
+.tscache/
+
 gruntfile.js
-/examples
 .npmignore
 .gitignore
-.git
-.settings
-.tscache

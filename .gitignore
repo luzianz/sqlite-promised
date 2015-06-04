@@ -1,10 +1,9 @@
-!/typings/
-
 /examples/data/sqlite.db
 
 .settings/
 .tscache/
 node_modules
+typings/
 
 *.js
 *.js.map
