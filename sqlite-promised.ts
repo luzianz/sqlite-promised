@@ -11,11 +11,6 @@ export interface IStatementComposite<T> {
 	passedValue: T;
 }
 
-export interface FPromiseGenerator {
-	//TODO: figure out if 'deferral' is the correct term here
-	(deferral: (resolve, reject) => void): any;
-}
-
 export function openDatabase(filePath: string): IPromise<sqlite3.Database> {
 	return createPromise(function (resolve, reject) {
 		var db = new sqlite3.Database(filePath, function (error) {
