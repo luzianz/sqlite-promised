@@ -1,8 +1,8 @@
 /// <reference path="typings/sqlite3/sqlite3.d.ts" />
+/// <reference path="node_modules/lz-tslib-interfaces/IPromise" />
 
 //TODO: comment code
 
-import IPromise = require('./IPromise');
 import sqlite3 = require('sqlite3');
 
 export interface IStatementComposite<T> {

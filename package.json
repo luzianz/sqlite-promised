@@ -4,7 +4,8 @@
 	"description": "A promise wrapper of sqlite3 written in typescript",
 	"main": "sqlite-promised.js",
 	"dependencies": {
-		"sqlite3": "^3.0.8"
+		"sqlite3": "^3.0.8",
+		"lz-tslib-interfaces": "0.0.2"
 	},
 	"devDependencies": {
 		"grunt": "^0.4.5",
