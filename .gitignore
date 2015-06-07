@@ -7,5 +7,4 @@ typings/
 
 *.js
 *.js.map
-*.d.ts
 npm-debug.log
