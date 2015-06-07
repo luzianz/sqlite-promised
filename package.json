@@ -5,8 +5,7 @@
 	"main": "sqlite-promised.js",
 	"dependencies": {
 		"sqlite3": "^3.0.8",
-		"promiz": "^1.0.3",
-		"lz-tslib-interfaces": "0.0.2"
+		"promiz": "^1.0.3"
 	},
 	"devDependencies": {
 		"grunt": "^0.4.5",
