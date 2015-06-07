@@ -4,6 +4,9 @@ typings/
 .settings/
 .tscache/
 
+*.ts
+!*.d.ts
+
 gruntfile.js
 .npmignore
 .gitignore
