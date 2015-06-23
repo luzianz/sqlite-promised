@@ -1,5 +1,4 @@
-/examples/data/sqlite.db
-
+/examples/
 .settings/
 .tscache/
 node_modules
