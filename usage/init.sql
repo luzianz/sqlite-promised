@@ -10,3 +10,5 @@ SELECT n."id",
 	n."when_created",
 	strftime('%Y-%m-%dT%H:%M:%SZ', n."when_created", 'unixepoch') AS "when_created_string"
 FROM "main"."notes" n;
+
+INSERT INTO "main"."notes" ("content") VALUES('Work hard, have fun, no drama');
