@@ -11,6 +11,5 @@ typings/
 gruntfile.js
 jsconfig.json
 tsconfig.json
-tsd.json
 .npmignore
 .gitignore
