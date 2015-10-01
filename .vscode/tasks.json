@@ -1,0 +1,9 @@
+{
+    "version": "0.1.0",
+    "command": "grunt",
+    "isShellCommand": true,
+    "tasks": [{
+        "taskName": "ts",
+        "isBuildCommand": true
+    }]
+}
