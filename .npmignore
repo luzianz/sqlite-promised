@@ -1,13 +1,16 @@
-/examples/
-/usage
+node_modules/
 typings/
 .git/
-.settings/
+.vscode/
 .tscache/
 
-*.ts
-!*.d.ts
+/src
+/examples/
+/usage
 
 gruntfile.js
+jsconfig.json
+tsconfig.json
+tsd.json
 .npmignore
 .gitignore
