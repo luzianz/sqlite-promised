@@ -1,5 +1,5 @@
 /// <reference path="../typings/sqlite3/sqlite3.d.ts" />
-/// <reference path="IPromise.d.ts" />
+/// <reference path="../node_modules/lz-tslib-interfaces/IPromise.d.ts" />
 /// <reference path="ISqliteDatabase.d.ts" />
 /// <reference path="IStatementComposite.d.ts" />
 
