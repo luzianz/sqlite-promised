@@ -1,9 +1,7 @@
-/examples/
-.settings/
-.tscache/
-node_modules
+node_modules/
 typings/
+.tscache/
 
-*.js
-*.js.map
+/js/
+
 npm-debug.log
