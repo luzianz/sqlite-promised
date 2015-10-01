@@ -1,13 +1,12 @@
-/// <reference path="typings/sqlite3/sqlite3.d.ts" />
-/// <reference path="IPromise" />
-/// <reference path="ISqliteDatabase" />
-/// <reference path="IStatementComposite" />
+/// <reference path="../typings/sqlite3/sqlite3.d.ts" />
+/// <reference path="IPromise.d.ts" />
+/// <reference path="ISqliteDatabase.d.ts" />
+/// <reference path="IStatementComposite.d.ts" />
 
 //TODO: comment code
 
 import sqlite3 = require('sqlite3');
 var Promise = require('promiz');
-
 
 export function openDatabase(filePath: string): IPromise<ISqliteDatabase> {
 	return createPromise(function(resolve, reject) {

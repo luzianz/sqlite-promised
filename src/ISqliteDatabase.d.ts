@@ -1,5 +1,5 @@
-/// <reference path="typings/node/node" />
-/// <reference path="ISqliteStatement" />
+/// <reference path="../typings/node/node.d.ts" />
+/// <reference path="ISqliteStatement.d.ts" />
 
 interface ISqliteDatabase {
 	close(callback?: (err: Error) => void): void;
