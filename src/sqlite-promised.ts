@@ -1,7 +1,6 @@
 /// <reference path="../typings/sqlite3/sqlite3.d.ts" />
 /// <reference path="../node_modules/lz-tslib-interfaces/IPromise.d.ts" />
-
-//TODO: comment code
+/// <reference path="../node_modules/lz-tslib-interfaces/IObserver.d.ts" />
 
 import sqlite3 = require('sqlite3');
 var Promise = require('promiz');
@@ -78,6 +77,30 @@ export function queryStatement<T>(stmt: sqlite3.Statement, params?): IPromise<{s
 	});
 }
 
+export function observeQueryStatement<T>(stmt: sqlite3.Statement, observer: IObserver<T>, params?): IPromise<sqlite3.Statement> {
+	return createPromise(function(resolve, reject) {
+		function onRow(error, row) {
+			if (error) {
+				observer.error(error);
+				reject(error);
+			} else {
+				observer.next(row);
+			}
+		}
+		
+		function onComplete(error, count) {
+			observer.done();
+			if (error) {
+				reject(error);
+			} else {
+				resolve(stmt);
+			}
+		}
+		
+		stmt.each(params, onRow, onComplete);
+	});
+}
+
 // ----------------------------------------------------------------------------
 export function runAndFinalize<T>(db: sqlite3.Database, sql: string, params?, pass?: T): IPromise<T> {
 	return prepareStatement(db, sql).then(function(stmt) {
@@ -104,6 +127,20 @@ export function queryAndFinalize<T>(db: sqlite3.Database, sql: string, params?):
 export function queryAndClose<T>(db: sqlite3.Database, sql: string, params?): IPromise<T[]> {
 	return queryAndFinalize<T>(db, sql, params).then(function(rows) {
 		return closeDatabase(db, rows);
+	});
+}
+
+export function observeQueryAndFinalize<T>(db: sqlite3.Database, sql: string, observer: IObserver<T>, params?): IPromise<void> {
+	return prepareStatement(db, sql).then(function(stmt) {
+		return observeQueryStatement<T>(stmt, observer, params);
+	}).then(function(stmt) {
+		return finalizeStatement<void>(stmt);
+	});
+}
+
+export function observeQueryAndClose<T>(db: sqlite3.Database, sql: string, observer: IObserver<T>, params?): IPromise<void> {
+	return observeQueryAndFinalize<T>(db, sql, observer, params).then(function() {
+		return closeDatabase<void>(db);
 	});
 }
 
