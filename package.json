@@ -1,21 +1,23 @@
 {
-  "name": "sqlite-promised",
-  "version": "1.0.5",
-  "description": "A promise wrapper of sqlite3 written in typescript",
-  "main": "js/sqlite-promised.js",
-  "dependencies": {
-    "sqlite3": "^3.0.8",
-    "promiz": "^1.0.3"
-  },
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-ts": "^4.2.0",
-    "jasmine": "^2.3.1",
-    "lz-tslib-interfaces": "0.0.6"
-  },
-  "scripts": {
-    "test": "jasmine"
-  },
-  "author": "Luzian Zagadinow",
-  "license": "MIT"
+	"name": "sqlite-promised",
+	"version": "1.0.6",
+	"description": "A promise wrapper of sqlite3 written in typescript",
+	"main": "build/sqlite-promised.js",
+	"dependencies": {
+		"sqlite3": "3.1.8"
+	},
+	"devDependencies": {
+		"@types/sqlite3": "2.2.31",
+		"dts-generator": "^2.0.0",
+		"grunt": "1.0.1",
+		"grunt-contrib-copy": "^1.0.0",
+		"grunt-ts": "5.5.1",
+		"jasmine": "2.3.1",
+		"typescript": "2.1.4"
+	},
+	"scripts": {
+		"test": "jasmine"
+	},
+	"author": "Luzian Zagadinow",
+	"license": "MIT"
 }
