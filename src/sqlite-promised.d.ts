@@ -1,20 +1,13 @@
-/// <reference path="typings/sqlite3/sqlite3.d.ts" />
-/// <reference path="node_modules/lz-tslib-interfaces/IPromise.d.ts" />
-/// <reference path="node_modules/lz-tslib-interfaces/IObserver.d.ts" />
-
 declare module 'sqlite-promised' {
-	import sqlite3 = require('sqlite3');
-	export function openDatabase(filePath: string): IPromise<sqlite3.Database>;
-	export function closeDatabase<T>(db: sqlite3.Database, pass?: T): IPromise<T>;
-	export function prepareStatement(db: sqlite3.Database, sql: string): IPromise<sqlite3.Statement>;
-	export function finalizeStatement<T>(stmt: sqlite3.Statement, pass?: T): IPromise<T>;
-	export function runStatement(stmt: sqlite3.Statement, params?: any): IPromise<sqlite3.Statement>;
-	export function queryStatement<T>(stmt: sqlite3.Statement, params?: any): IPromise<{statement: sqlite3.Statement, rows: T[]}>;
-	export function observeQueryStatement<T>(stmt: sqlite3.Statement, observer: IObserver<T>, params?): IPromise<sqlite3.Statement>;
-	export function runAndFinalize<T>(db: sqlite3.Database, sql: string, params?: any, pass?: T): IPromise<T>;
-	export function runAndClose<T>(db: sqlite3.Database, sql: string, params?: any, pass?: T): IPromise<T>;
-	export function queryAndFinalize<T>(db: sqlite3.Database, sql: string, params?: any): IPromise<T[]>;
-	export function queryAndClose<T>(db: sqlite3.Database, sql: string, params?: any): IPromise<T[]>;
-	export function observeQueryAndFinalize<T>(db: sqlite3.Database, sql: string, observer: IObserver<T>, params?): IPromise<void>;
-	export function observeQueryAndClose<T>(db: sqlite3.Database, sql: string, observer: IObserver<T>, params?): IPromise<void>;
+	import * as sqlite3 from 'sqlite3';
+	export function openDatabaseAsync(filePath: string): Promise<sqlite3.Database>;
+	export function closeDatabaseAsync(db: sqlite3.Database): Promise<void>;
+	export function prepareStatementAsync(db: sqlite3.Database, sql: string): Promise<sqlite3.Statement>;
+	export function finalizeStatementAsync(stmt: sqlite3.Statement): Promise<void>;
+	export function runStatementAsync(stmt: sqlite3.Statement, params?: any): Promise<void>;
+	export function queryStatementAsync<T>(stmt: sqlite3.Statement, params?: any): Promise<T[]>;
+	export function runAndFinalizeAsync(db: sqlite3.Database, sql: string, params?: any): Promise<void>;
+	export function runAndCloseAsync(db: sqlite3.Database, sql: string, params?: any): Promise<void>;
+	export function queryAndFinalizeAsync<T>(db: sqlite3.Database, sql: string, params?: any): Promise<T[]>;
+	export function queryAndCloseAsync<T>(db: sqlite3.Database, sql: string, params?: any): Promise<T[]>;
 }
