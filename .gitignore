@@ -2,6 +2,7 @@ node_modules/
 typings/
 .tscache/
 
-/js/
-
+/build/
+.baseDir.*
 npm-debug.log
+tscommand-*.tmp.txt
