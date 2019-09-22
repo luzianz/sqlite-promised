@@ -6,3 +6,4 @@ typings/
 .baseDir.*
 npm-debug.log
 tscommand-*.tmp.txt
+*.swp
