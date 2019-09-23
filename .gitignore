@@ -7,3 +7,4 @@ typings/
 npm-debug.log
 tscommand-*.tmp.txt
 *.swp
+package-lock.json
