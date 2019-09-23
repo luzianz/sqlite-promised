@@ -4,15 +4,13 @@
 	"description": "A promise wrapper of sqlite3 written in typescript",
 	"main": "build/sqlite-promised.js",
 	"dependencies": {
-		"sqlite3": "3.1.8"
+		"sqlite3": "^4.1.0"
 	},
 	"devDependencies": {
-		"@types/sqlite3": "2.2.31",
-		"grunt": "1.0.1",
-		"grunt-contrib-copy": "^1.0.0",
-		"grunt-ts": "5.5.1",
-		"jasmine": "2.3.1",
-		"typescript": "2.1.4"
+		"@types/sqlite3": "^3.1.5",
+		"gulp": "^4.0.2",
+		"gulp-typescript": "^5.0.1",
+		"typescript": "^3.6.3"
 	},
 	"scripts": {
 		"test": "jasmine"
