@@ -48,13 +48,13 @@ export function finalizeStatementAsync(stmt: sqlite3.Statement): Promise<void> {
 	});
 }
 
-export function runStatementAsync(stmt: sqlite3.Statement, params?): Promise<void> {
-	return new Promise<void>((resolve, reject) => {
+export function runStatementAsync(stmt: sqlite3.Statement, params?): Promise<number> {
+	return new Promise<number>((resolve, reject) => {
 		stmt.run(params, error => {
 			if (error) {
 				reject(error);
 			} else {
-				resolve();
+				resolve(this.lastID);
 			}
 		});
 	});
@@ -73,15 +73,17 @@ export function queryStatementAsync<T>(stmt: sqlite3.Statement, params?): Promis
 }
 
 // ----------------------------------------------------------------------------
-export async function runAndFinalizeAsync(db: sqlite3.Database, sql: string, params?): Promise<void> {
+export async function runAndFinalizeAsync(db: sqlite3.Database, sql: string, params?): Promise<number> {
 	let stmt = await prepareStatementAsync(db, sql);
-	await runStatementAsync(stmt, params);
+	const lastID = await runStatementAsync(stmt, params);
 	await finalizeStatementAsync(stmt);
+	return lastID;
 }
 
-export async function runAndCloseAsync(db: sqlite3.Database, sql: string, params?): Promise<void> {
-	await runAndFinalizeAsync(db, sql, params);
+export async function runAndCloseAsync(db: sqlite3.Database, sql: string, params?): Promise<number> {
+	const lastID = await runAndFinalizeAsync(db, sql, params);
 	await closeDatabaseAsync(db);
+	return lastID;
 }
 
 export async function queryAndFinalizeAsync<T>(db: sqlite3.Database, sql: string, params?): Promise<T[]> {
