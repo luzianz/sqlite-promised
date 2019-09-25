@@ -2,7 +2,9 @@
 	"name": "sqlite-promised",
 	"version": "1.0.7",
 	"description": "A promise wrapper of sqlite3 written in typescript",
-	"main": "build/sqlite-promised.js",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"declaration": true,
 	"dependencies": {
 		"sqlite3": "^4.1.0"
 	},
