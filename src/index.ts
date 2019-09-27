@@ -109,8 +109,19 @@ export async function queryAndFinalizeAsync<T>(db: sqlite3.Database, sql: string
 	return rows;
 }
 
+export async function observeAndFinalizeAsync<T>(db: sqlite3.Database, sql: string, observer: IObserver<T>, params?: any): Promise<void> {
+	let stmt = await prepareStatementAsync(db, sql);
+	observeStatement<T>(stmt, observer,  params);
+	await finalizeStatementAsync(stmt);
+}
+
 export async function queryAndCloseAsync<T>(db: sqlite3.Database, sql: string, params?: any): Promise<T[]> {
 	let rows = await queryAndFinalizeAsync<T>(db, sql, params);
 	await closeDatabaseAsync(db);
 	return rows;
+}
+
+export async function observeAndCloseAsync<T>(db: sqlite3.Database, sql: string, observer: IObserver<T>, params?: any): Promise<void> {
+	await observeAndFinalizeAsync<T>(db, sql, observer, params);
+	await closeDatabaseAsync(db);
 }
