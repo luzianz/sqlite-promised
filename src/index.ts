@@ -1,4 +1,5 @@
 import * as sqlite3 from 'sqlite3';
+import { IObserver } from './IObserver';
 
 export function openDatabaseAsync(filePath: string): Promise<sqlite3.Database> {
 	return new Promise<sqlite3.Database>((resolve, reject) => {
@@ -70,6 +71,21 @@ export function queryStatementAsync<T>(stmt: sqlite3.Statement, params?): Promis
 			}
 		});
 	});
+}
+
+export function observeStatement<T>(stmt: sqlite3.Statement, observer: IObserver<T>, params?): void {
+	let errorOccurred = false;
+	stmt.each(params, (err, item) => {
+		if (errorOccurred) return;
+
+		if (err) {
+			observer.onError(err);
+		} else {
+			observer.onNext(item);
+		}
+	});
+
+	if (!errorOccurred) observer.onCompleted();
 }
 
 // ----------------------------------------------------------------------------
