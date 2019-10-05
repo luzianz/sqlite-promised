@@ -5,5 +5,5 @@
 		"declaration": true,
 		"outDir": "dist"
 	},
-	"files": [ "src/ts/**/*.ts" ]
+	"include": [ "src" ]
 }
